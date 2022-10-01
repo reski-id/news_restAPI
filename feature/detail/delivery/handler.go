@@ -31,9 +31,12 @@ func (nh *detailHandler) InsertDetail() echo.HandlerFunc {
 			c.JSON(http.StatusBadRequest, "error read input")
 		}
 
-		fmt.Println(tmp)
-
-		var userid, _ = common.ExtractData(c)
+		var userid, role = common.ExtractData(c)
+		if role != "admin" {
+			return c.JSON(http.StatusCreated, map[string]interface{}{
+				"message": "Only Admin can Access",
+			})
+		}
 		data, err := nh.contentUsecase.AddDetail(userid, tmp.ToDomain())
 
 		if err != nil {
@@ -67,6 +70,14 @@ func (nh *detailHandler) UpdateDetail() echo.HandlerFunc {
 			log.Println(res, "Cannot parse data")
 			return c.JSON(http.StatusInternalServerError, "error read update")
 		}
+
+		var _, role = common.ExtractData(c)
+		if role != "admin" {
+			return c.JSON(http.StatusCreated, map[string]interface{}{
+				"message": "Only Admin can Access",
+			})
+		}
+
 		data, err := nh.contentUsecase.UpDetail(cnv, tmp.ToDomain())
 
 		if err != nil {
@@ -107,6 +118,14 @@ func (nh *detailHandler) DeleteDetail() echo.HandlerFunc {
 
 func (nh *detailHandler) GetAllDetail() echo.HandlerFunc {
 	return func(c echo.Context) error {
+
+		var _, role = common.ExtractData(c)
+		if role != "admin" {
+			return c.JSON(http.StatusCreated, map[string]interface{}{
+				"message": "Only Admin can Access",
+			})
+		}
+
 		data, err := nh.contentUsecase.GetAllD()
 
 		if err != nil {
@@ -129,6 +148,13 @@ func (nh *detailHandler) GetAllDetail() echo.HandlerFunc {
 
 func (nh *detailHandler) GetDetailID() echo.HandlerFunc {
 	return func(c echo.Context) error {
+		var _, role = common.ExtractData(c)
+		if role != "admin" {
+			return c.JSON(http.StatusCreated, map[string]interface{}{
+				"message": "Only Admin can Access",
+			})
+		}
+
 		idDetail := c.Param("id")
 		id, _ := strconv.Atoi(idDetail)
 		data, err := nh.contentUsecase.GetSpecificDetail(id)
