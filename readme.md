@@ -16,6 +16,9 @@
   • Contact me<br>
 </p>
 
+##  Task 1 - Problem Solving
+Solution
+https://github.com/reski-id/news_restAPI/tree/main/Dokumentasi/task1-SoalProblemSolving
 
 ## 📱 Features
 
