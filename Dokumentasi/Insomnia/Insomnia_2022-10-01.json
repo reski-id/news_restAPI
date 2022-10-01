@@ -1,0 +1,311 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2022-10-01T07:49:31.981Z",
+	"__export_source": "insomnia.desktop.app:v5.14.7",
+	"resources": [
+		{
+			"_id": "wrk_b88662afd84643279c79c5bdf43c05e2",
+			"created": 1603853041174,
+			"description": "",
+			"modified": 1603853041174,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_b0813ee6631342b497b179d6fa7112a9",
+			"color": null,
+			"created": 1603853041269,
+			"data": {},
+			"isPrivate": false,
+			"modified": 1603853041269,
+			"name": "New Environment",
+			"parentId": "wrk_b88662afd84643279c79c5bdf43c05e2",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_bb8fcf7a44544d20995414f00f8da8fc",
+			"cookies": [
+				{
+					"creation": "2020-11-14T08:28:31.681Z",
+					"domain": "127.0.0.1",
+					"expires": "2020-11-14T10:28:39.000Z",
+					"extensions": [
+						"samesite=lax"
+					],
+					"hostOnly": true,
+					"id": "22945850920513244",
+					"key": "XSRF-TOKEN",
+					"lastAccessed": "2020-11-14T08:28:39.738Z",
+					"maxAge": 7200,
+					"path": "/",
+					"value": "eyJpdiI6Ii9zYzIyaFo5ZTN3WlFvWk5nczJLamc9PSIsInZhbHVlIjoiVmVVaThkdWFtNFdRV0g0a1piWkpzUGtjL3FUZ3JvUEt6UFZHbDRadmRMeGE2ZGZrTVRSdlBETGE1djRscVJiRUxUTkNtaFd3NFVMN0I3OEIwL2kxb1ZXNzJlUXFid0dMQ1d1VFdROE51T3NjaXhkVFllWTZMUjcrUWVmaU1uNEYiLCJtYWMiOiJhY2ZlZDdmOTNjYzFiNjlkYzI1ZmU1ZGYzMjY2ZjZhZTMxN2Y5MzA2MGJhZGFmNGQzMDY4ZWJmMjBlZTdjZDkwIn0%3D"
+				},
+				{
+					"creation": "2020-11-14T08:28:31.682Z",
+					"domain": "127.0.0.1",
+					"expires": "2020-11-14T10:28:39.000Z",
+					"extensions": [
+						"samesite=lax"
+					],
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "4966725808950301",
+					"key": "laravel_session",
+					"lastAccessed": "2020-11-14T08:28:39.738Z",
+					"maxAge": 7200,
+					"path": "/",
+					"value": "eyJpdiI6IkVVQUh5Nnl4TllpeVdRYVJkM0gwelE9PSIsInZhbHVlIjoiTE5xMS8vUzUyNkY0bXhVQmJ0Y3hGajB6T2VkT09oRTdwRTZEbk4weWFvSTFlTTIrU0JIbHFqdzc5ZE9DUThuWnhuVUlvaDVTNlhpQnBOSzVDd1AxdWZnb3I1d1VZa25qVDFtbUVIZktBOWtaSThhQzVhWUNON1FyWGw4MCtMdmIiLCJtYWMiOiJmZjU2ZTIwNGUwMGVhOGI4ODU3ZjBiOTcwMzJhOGYzNmM1NmUzNTI4ZmMwMTljMjM2MWU4OTE1YmJmMWM5MmMyIn0%3D"
+				},
+				{
+					"creation": "2022-08-13T09:26:45.725Z",
+					"domain": "latihan-app.test",
+					"expires": "2022-08-15T10:18:44.000Z",
+					"extensions": [
+						"samesite=lax"
+					],
+					"hostOnly": true,
+					"id": "8564867293132665",
+					"key": "XSRF-TOKEN",
+					"lastAccessed": "2022-08-15T08:18:44.209Z",
+					"maxAge": 7200,
+					"path": "/",
+					"value": "eyJpdiI6ImY3WjRDUE01Z0JZQ3VuWXdTTDFEelE9PSIsInZhbHVlIjoiN2NJU2pyeUx6bm14Q3R5aThFMmNVSVdRZElraU8xZ0NkMGZOVDBaaXZoTmhTN3JsWFgrNHBETkFpdEIzSDVnSnFzMzVqOG5ZRUpwbmtSTWhlR3RrWC84TkRhT2dtcFc2NDZzNnJOYnc2WjcxK3FyNzJpYmFEaFZaYVBZUDBqTGgiLCJtYWMiOiIxZDkwZGE4MWUxMmMzZGI3ZWVjZTZlZDNjODBmOGQ2MTNjNzVlY2Q2MjM1Zjk2MmFlMDZiZDEzZTE2NWViNTQ4IiwidGFnIjoiIn0%3D"
+				},
+				{
+					"creation": "2022-08-13T09:26:45.726Z",
+					"domain": "latihan-app.test",
+					"expires": "2022-08-15T10:18:44.000Z",
+					"extensions": [
+						"samesite=lax"
+					],
+					"hostOnly": true,
+					"httpOnly": true,
+					"id": "8320538166644176",
+					"key": "laravel_session",
+					"lastAccessed": "2022-08-15T08:18:44.210Z",
+					"maxAge": 7200,
+					"path": "/",
+					"value": "eyJpdiI6Im9oWExHMkRqOXZJM2lhVWcwNEVkRHc9PSIsInZhbHVlIjoiQzIxMEZhVG5leTBaTWlZUVJCUFcxWXVwWWJvckRSS2F4WFRoQUJ0TjA3RnpmeVdJc0FQVWU4YUVxUUV2ek9DdVkvMUlWK0FZeU8rWHVTdStUTlp2dVdYbFVNRG9qT1ZPU0xqSUhldVNMa1ZBVG5ueEVkZU5Ma3V3bDFuelRSK3giLCJtYWMiOiIxNGNmZGRkNzRiNjY3YzJhMWQ0ZjAxOGI0ZjczOWU4YjVhYTBiNmU2ZGQyYTE2ZTQzY2ViODM2NzBhMzllN2U3IiwidGFnIjoiIn0%3D"
+				}
+			],
+			"created": 1603853041488,
+			"modified": 1660551524210,
+			"name": "Default Jar",
+			"parentId": "wrk_b88662afd84643279c79c5bdf43c05e2",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_fe43162eb0e143b7b87bceae123e01be",
+			"created": 1664603461083,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1664603461083,
+			"modified": 1664603461083,
+			"name": "portal",
+			"parentId": "wrk_b88662afd84643279c79c5bdf43c05e2",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_ff979cd0e52a4fbf8f8254b11e9809ef",
+			"created": 1664603473140,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1664603473140,
+			"modified": 1664603473140,
+			"name": "User",
+			"parentId": "fld_fe43162eb0e143b7b87bceae123e01be",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_c0eed6de3fc34874bb521335c78d670c",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_8e018fdece2f4806bde81a77f4414d47",
+						"name": "fullname",
+						"value": "Admin"
+					},
+					{
+						"id": "pair_50a01ef91e5849bb95913428f89bc11e",
+						"name": "username",
+						"value": "administrator"
+					},
+					{
+						"disabled": false,
+						"id": "pair_0a32539bebe3413ab0e46a36e9b81648",
+						"name": "password",
+						"value": "admin12345"
+					},
+					{
+						"disabled": false,
+						"id": "pair_694cdcace3104d43ae240dafec35c771",
+						"name": "email",
+						"value": "admin@gmail.com"
+					},
+					{
+						"id": "pair_65c53570ea1f48eb8f5a99cdf1aacb88",
+						"name": "role",
+						"value": "admin"
+					}
+				]
+			},
+			"created": 1664603488046,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_187d20c5350944c982cba333101a23c8",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"metaSortKey": -1664603488046,
+			"method": "POST",
+			"modified": 1664610132720,
+			"name": "Register_as_Admin",
+			"parameters": [],
+			"parentId": "fld_ff979cd0e52a4fbf8f8254b11e9809ef",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8000/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e7acb56058344710942bf11ab02e709a",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_b39372e0dcac4dd48cfaa69590bdca3b",
+						"name": "username",
+						"value": "administrator"
+					},
+					{
+						"id": "pair_b9def76eb7a84691a7b853f2c7b5b77b",
+						"name": "password",
+						"value": "admin12345"
+					}
+				]
+			},
+			"created": 1664607261965,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_0b8c108929b44c57a8d1478f9bf3970f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"metaSortKey": -1664607261965,
+			"method": "POST",
+			"modified": 1664610478276,
+			"name": "login_as_admin",
+			"parameters": [],
+			"parentId": "fld_ff979cd0e52a4fbf8f8254b11e9809ef",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8000/login",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6ecbe2296b5443d5b140129edf80ee42",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_8e018fdece2f4806bde81a77f4414d47",
+						"name": "fullname",
+						"value": "Ahmad Reski"
+					},
+					{
+						"id": "pair_50a01ef91e5849bb95913428f89bc11e",
+						"name": "username",
+						"value": "reski"
+					},
+					{
+						"disabled": false,
+						"id": "pair_0a32539bebe3413ab0e46a36e9b81648",
+						"name": "password",
+						"value": "reski12345"
+					},
+					{
+						"disabled": false,
+						"id": "pair_694cdcace3104d43ae240dafec35c771",
+						"name": "email",
+						"value": "programmer.reski@gmail.com"
+					}
+				]
+			},
+			"created": 1664610141583,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_187d20c5350944c982cba333101a23c8",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"metaSortKey": -1664603487996,
+			"method": "POST",
+			"modified": 1664610219028,
+			"name": "Register_as_User",
+			"parameters": [],
+			"parentId": "fld_ff979cd0e52a4fbf8f8254b11e9809ef",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8000/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_c760f27e787b48ab9ce4ea47beb787fa",
+			"authentication": {},
+			"body": {
+				"mimeType": "multipart/form-data",
+				"params": [
+					{
+						"id": "pair_b39372e0dcac4dd48cfaa69590bdca3b",
+						"name": "username",
+						"value": "reski"
+					},
+					{
+						"id": "pair_b9def76eb7a84691a7b853f2c7b5b77b",
+						"name": "password",
+						"value": "reski12345"
+					}
+				]
+			},
+			"created": 1664610483530,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_0b8c108929b44c57a8d1478f9bf3970f",
+					"name": "Content-Type",
+					"value": "multipart/form-data"
+				}
+			],
+			"metaSortKey": -1664605375005.5,
+			"method": "POST",
+			"modified": 1664610510820,
+			"name": "login_as_user",
+			"parameters": [],
+			"parentId": "fld_ff979cd0e52a4fbf8f8254b11e9809ef",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:8000/login",
+			"_type": "request"
+		}
+	]
+}
