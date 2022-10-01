@@ -8,12 +8,10 @@ import (
 
 type Content struct {
 	gorm.Model
-	Content     string `json:"content" form:"content"`
-	ViewsNumber int    `json:"view_number" form:"view_number"`
-	Point       int    `json:"point" form:"point"`
-	Images      string `json:"images" form:"images"`
-	UserID      int
-	User        User `gorm:"foreignKey:UserID; references:ID; constraint:OnDelete:CASCADE"`
+	Content string `json:"content" form:"content"`
+	Images  string `json:"images" form:"images"`
+	UserID  int
+	User    User `gorm:"foreignKey:UserID; references:ID; constraint:OnDelete:CASCADE"`
 }
 
 type User struct {
@@ -22,14 +20,12 @@ type User struct {
 
 func (b *Content) ToDomain() domain.Content {
 	return domain.Content{
-		ID:          int(b.ID),
-		Content:     b.Content,
-		Images:      b.Images,
-		ViewsNumber: b.ViewsNumber,
-		Point:       b.Point,
-		CreatedAt:   b.CreatedAt,
-		UpdatedAt:   b.UpdatedAt,
-		UserID:      b.UserID,
+		ID:        int(b.ID),
+		Content:   b.Content,
+		Images:    b.Images,
+		CreatedAt: b.CreatedAt,
+		UpdatedAt: b.UpdatedAt,
+		UserID:    b.UserID,
 	}
 }
 
@@ -47,8 +43,6 @@ func ToLocal(data domain.Content) Content {
 	res.ID = uint(data.ID)
 	res.UserID = data.UserID
 	res.Content = data.Content
-	res.Point = data.Point
-	res.ViewsNumber = data.ViewsNumber
 	res.Images = data.Images
 	return res
 }

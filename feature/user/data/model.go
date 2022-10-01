@@ -28,11 +28,33 @@ func (u *User) ToModel() domain.User {
 	}
 }
 
+func (u *User) ToModel2() domain.User {
+	return domain.User{
+		ID:        int(u.ID),
+		UserName:  u.Username,
+		Email:     u.Email,
+		FullName:  u.FullName,
+		Role:      u.Role,
+		CreatedAt: u.CreatedAt,
+		UpdatedAt: u.UpdatedAt,
+	}
+}
+
 func ParseToArr(arr []User) []domain.User {
 	var res []domain.User
 
 	for _, val := range arr {
 		res = append(res, val.ToModel())
+	}
+
+	return res
+}
+
+func ParseToArr2(arr []User) []domain.User {
+	var res []domain.User
+
+	for _, val := range arr {
+		res = append(res, val.ToModel2())
 	}
 
 	return res

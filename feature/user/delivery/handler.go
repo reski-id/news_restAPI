@@ -28,6 +28,7 @@ func New(e *echo.Echo, us domain.UserUseCase) {
 	e.POST("/register", handler.InsertUser())
 	e.POST("/login", handler.LogUser())
 	e.GET("/users", handler.GetProfile(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
+	e.GET("/datausers", handler.GetAllUser())
 	e.DELETE("/users", handler.DeleteUser(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
 	e.PUT("/users", handler.UpdateUser(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
 }
@@ -140,6 +141,27 @@ func (uh *userHandler) UpdateUser() echo.HandlerFunc {
 
 		return c.JSON(http.StatusCreated, map[string]interface{}{
 			"message": "Success update data",
+			"data":    data,
+		})
+	}
+}
+
+func (uh *userHandler) GetAllUser() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		data, err := uh.userUsecase.GetAllU()
+		if err != nil {
+			log.Println("Cannot get data", err)
+			return c.JSON(http.StatusBadRequest, "error read input")
+
+		}
+
+		if data == nil {
+			log.Println("Terdapat error saat mengambil data")
+			return c.JSON(http.StatusInternalServerError, "Problem from database")
+		}
+
+		return c.JSON(http.StatusOK, map[string]interface{}{
+			"message": "success get all data",
 			"data":    data,
 		})
 	}

@@ -7,15 +7,13 @@ import (
 )
 
 type Content struct {
-	ID          int
-	Content     string
-	ViewsNumber int
-	Point       int
-	Images      string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	DeletedAt   time.Time
-	UserID      int
+	ID        int
+	Content   string
+	Images    string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt time.Time
+	UserID    int
 }
 
 type ContentHandler interface {

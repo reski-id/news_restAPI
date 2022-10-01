@@ -34,6 +34,22 @@ func (_m *UserData) Delete(userID int) (int, error) {
 	return r0, r1
 }
 
+// GetAll provides a mock function with given fields:
+func (_m *UserData) GetAll() []domain.User {
+	ret := _m.Called()
+
+	var r0 []domain.User
+	if rf, ok := ret.Get(0).(func() []domain.User); ok {
+		r0 = rf()
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]domain.User)
+		}
+	}
+
+	return r0
+}
+
 // GetSpecific provides a mock function with given fields: userID
 func (_m *UserData) GetSpecific(userID int) (domain.User, error) {
 	ret := _m.Called(userID)

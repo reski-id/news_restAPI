@@ -100,3 +100,13 @@ func (ud *userUseCase) DeleteUser(id int) (row int, err error) {
 	}
 	return row, nil
 }
+
+func (ud *userUseCase) GetAllU() ([]domain.User, error) {
+	res := ud.userData.GetAll()
+
+	if len(res) == 0 {
+		return nil, errors.New("no data found")
+	}
+
+	return res, nil
+}
