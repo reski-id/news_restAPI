@@ -12,6 +12,10 @@ import (
 	nd "portal/feature/content/data"
 	contentDelivery "portal/feature/content/delivery"
 	nu "portal/feature/content/usecase"
+
+	dd "portal/feature/detail/data"
+	detailDelivery "portal/feature/detail/delivery"
+	du "portal/feature/detail/usecase"
 )
 
 func Initfactory(e *echo.Echo, db *gorm.DB) {
@@ -24,5 +28,10 @@ func Initfactory(e *echo.Echo, db *gorm.DB) {
 	contentCase := nu.New(contentData)
 	contentHandler := contentDelivery.New(contentCase)
 	contentDelivery.RouteContent(e, contentHandler)
+
+	detailData := dd.New(db)
+	contentDCase := du.New(detailData)
+	contentDHandler := detailDelivery.New(contentDCase)
+	detailDelivery.RoutePoint(e, contentDHandler)
 
 }
