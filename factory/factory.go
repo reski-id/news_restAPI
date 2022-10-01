@@ -8,6 +8,10 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
+
+	nd "portal/feature/content/data"
+	contentDelivery "portal/feature/content/delivery"
+	nu "portal/feature/content/usecase"
 )
 
 func Initfactory(e *echo.Echo, db *gorm.DB) {
@@ -15,5 +19,10 @@ func Initfactory(e *echo.Echo, db *gorm.DB) {
 	validator := validator.New()
 	useCase := us.New(userData, validator)
 	userDelivery.New(e, useCase)
+
+	contentData := nd.New(db)
+	contentCase := nu.New(contentData)
+	contentHandler := contentDelivery.New(contentCase)
+	contentDelivery.RouteContent(e, contentHandler)
 
 }
