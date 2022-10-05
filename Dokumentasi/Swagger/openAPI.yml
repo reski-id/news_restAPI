@@ -5,9 +5,9 @@ servers:
     url: https://virtserver.swaggerhub.com/webdeveloper.reski/portal/1.0.0
 
 info:
-  description: Portal with Golang and React
+  description: Portal News with Golang Rest API
   version: "1.0.0"
-  title: Portal
+  title: Portal News
   contact:
     email: programmer.reski@gmail.com
   license:
