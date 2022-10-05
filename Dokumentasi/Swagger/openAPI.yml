@@ -94,7 +94,7 @@ paths:
                     message: "Internal server error"
                   }
         
-  /users:
+  /register:
     post:
       tags:
         - Users
@@ -161,6 +161,57 @@ paths:
                     message: "Internal Server Error",
                     data : null
                   }
+  /datausers:
+    get:
+      tags:
+        - Users
+      summary: Registration User
+      description: get all user data
+      responses:
+        '200':
+          description: Success Response
+          content:
+            application/json:
+              examples:
+                responseData:
+                  description: response success to register user
+                  value: {
+                    code: 200,
+                    message: "success",
+                    data: {
+                      "id"     : 1,
+                      "fullname": "The Mad Titan",
+                      "username": "thanos",
+                      "email": "thanos@gmail.com",
+                      "role": "admin",
+                      "created_at": "2022-06-27T05:56:50.248Z",
+                    }
+                  }
+                
+        '400':
+          description: Failed Response
+          content:
+            application/json:
+              examples:
+                responseData:
+                  description: response failed to register user
+                  value: {
+                    code: 400,
+                    message: "all input data must be filled",
+                    data : null
+                  }
+        '500':
+          description: Failed Response
+          content:
+            application/json:
+              examples:
+                responseData:
+                  description: response failed to register user
+                  value: {
+                    code: 500,
+                    message: "Internal Server Error",
+                    data : null
+                  }
                 
   /users/{iduser}:
     get:
@@ -196,7 +247,6 @@ paths:
                       "username": "thanos",
                       "email": "thanos@gmail.com",
                       "role": "admin",
-                      "phone": "08123247689",
                       "created_at": "2022-06-27T05:56:50.248Z",
                     }
                   }
@@ -354,7 +404,7 @@ paths:
                     message: "Internal Server Error",
                     data : null,
                   }
-  /post:
+  /allpost:
     get:
       tags:
         - post
@@ -365,16 +415,73 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseAllproductSuccess'
+                $ref: '#/components/schemas/responseAllpostSuccess'
               examples:
                 responseData:
                   description: response success 
                   value: {
-                    message: "success",
+                    message: "success get my content",
                     data: [{
                       id: 1,
+                      title: "judul",
                       content: "ini adalah berita terbaru",
                       images : "https://storage.googleapis.com/bucket/download1.jpg",
+                      "point":100,
+                      "viewsnumber":600,
+                      "userid":3,
+                      created_at: "2022-06-26T18:35:01.231Z"
+                    }]
+                  }
+        '400':
+          description: Cannot get data
+          content:
+            application/json:
+              examples:
+                responseData:
+                  description: response failed 
+                  value: {
+                    "code" : 400,
+                    "message" : "Cannot get all data",
+                    "data" : null
+                  }
+        '500':
+          description: Cannot get all data
+          content:
+            application/json:
+              examples:
+                responseData:
+                  description: response failed 
+                  value: {
+                    "code" : 500,
+                    "message" : "Internal server error",
+                    "data" : null
+                  }
+  
+  /mypost:
+    get:
+      tags:
+        - post
+      description: Get all my post
+      responses:
+        '200':
+          description: Success Response get all post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseAllpostSuccess'
+              examples:
+                responseData:
+                  description: response success 
+                  value: {
+                    message: "success get my content",
+                    data: [{
+                      id: 1,
+                      title: "judul",
+                      content: "ini adalah berita terbaru",
+                      images : "https://storage.googleapis.com/bucket/download1.jpg",
+                      "point":100,
+                      "viewsnumber":600,
+                      "userid":3,
                       created_at: "2022-06-26T18:35:01.231Z"
                     }]
                   }
@@ -412,16 +519,15 @@ paths:
             content:
               multipart/form-data:
                 schema:
-                  $ref: '#/components/schemas/requestproduct'
+                  $ref: '#/components/schemas/requestpost'
                 examples:
                   productData1:
                     description: "data"
                     value: {
-                      id: 1,
-                      content: "ini adalah berita terbaru",
-                      description: "terlaris pada tahun ini",
-                      images  : "https://storage.googleapis.com/bucket-project/download1.jpg",
-                      created_at: "2022-06-26T18:35:01.231Z",
+                      ID: 2,
+                      Title: "ini judul",
+                      Content: "berita terkini keduakali",
+                      Images: "https://www.kindpng.com/picc/m/151-1517817_transparent-computadoras-png-desktop-computer-png-download.png",
                         }
       responses:
         '200':
@@ -460,11 +566,11 @@ paths:
                     "data" : null
                   }
                   
-  /post/{id}:
+  /mypost/{id}:
     get:
       tags:
         - post
-      description: Get product by id
+      description: Get post by id
       parameters:
         - in: path
           name: id
@@ -479,7 +585,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseproductSuccess'
+                $ref: '#/components/schemas/responsepostSuccess'
               examples:
                 responseData:
                   description: response success 
@@ -487,13 +593,12 @@ paths:
                     message: "success",
                     data: {
                       id: 1,
+                      title: "judul",
                       content: "ini adalah berita terbaru",
                       images : "https://storage.googleapis.com/bucket/download1.jpg",
-                      created_at: "2022-01-01T18:35:01.231Z",
-                      user: {
-                        id: 2,
-                        username: "reski"
-                      }
+                      "userid":3,
+                      created_at: "2022-06-26T18:35:01.231Z"
+                      
                     }
                   }
         '400':
@@ -537,15 +642,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/requestUpdateproduct'
+              $ref: '#/components/schemas/requestUpdatepost'
             examples:
               userData1:
                 description: "Data Post"
                 value: {
+                        title: "judul",
                         content: "ini adalah berita terbaru",
                         images : "https://storage.googleapis.com/bucket/download1.jpg",
-                        created_at: "2022-01-01T18:35:01.231Z",
-                        user_id: 2,
                         }
       responses:
         '200':
@@ -571,7 +675,7 @@ paths:
                     message: "Bad Request",
                   }
         '500':
-          description: Cannot get all data
+          description: Failed
           content:
             application/json:
               examples:
@@ -621,7 +725,7 @@ paths:
                     message: "Bad Request",
                   }
         '500':
-          description: Cannot get all data
+          description: Failed
           content:
             application/json:
               examples:
@@ -644,17 +748,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseAllproductSuccess'
+                $ref: '#/components/schemas/responseAllpointSuccess'
               examples:
                 responseData:
                   description: response success 
                   value: {
                     message: "success",
                     data: [{
-                      id: 1,
-                      contentID: 1,
-                      Point: 100,
-                      ViewsNumber: 1000, 
+                    id: 1,
+                      content_id: 1,
+                      point: 100,
+                      views_number: 1000, 
                       created_at: "2022-10-02T18:35:01.231Z"
                     }]
                   }
@@ -692,16 +796,15 @@ paths:
             content:
               multipart/form-data:
                 schema:
-                  $ref: '#/components/schemas/requestproduct'
+                  $ref: '#/components/schemas/requestpoint'
                 examples:
                   productData1:
                     description: "data"
                     value: {
                       id: 1,
-                      contentID: 1,
-                      Point: 100,
-                      ViewsNumber: 1000, 
-                      created_at: "2022-10-02T18:35:01.231Z",
+                      content_id: 1,
+                      point: 100,
+                      views_number: 1000, 
                         }
       responses:
         '200':
@@ -759,18 +862,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/responseproductSuccess'
+                $ref: '#/components/schemas/responsepointSuccess'
               examples:
                 responseData:
                   description: response success 
                   value: {
                     message: "success",
                     data: {
-                      id: 1,
-                      contentID: 1,
-                      Point: 100,
-                      ViewsNumber: 1000, 
-                      created_at: "2022-10-02T18:35:01.231Z",
+                        id: 1,
+                        content_id: 1,
+                        point: 100,
+                        views_number: 1000,
+                        created_at: "2022-10-02T18:35:01.231Z",
                     }
                   }
         '400':
@@ -814,15 +917,15 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/requestUpdateproduct'
+              $ref: '#/components/schemas/requestUpdatepoint'
             examples:
               userData1:
                 description: "Data Post"
                 value: {
-                        contentID: 1,
-                        Point: 100,
-                        ViewsNumber: 1000, 
-                        created_at: "2022-10-02T18:35:01.231Z",
+                        id: 1,
+                        content_id: 1,
+                        point: 100,
+                        views_number: 1000
                         }
       responses:
         '200':
@@ -848,7 +951,7 @@ paths:
                     message: "Bad Request",
                   }
         '500':
-          description: Cannot get all data
+          description: Failed
           content:
             application/json:
               examples:
@@ -1001,9 +1104,13 @@ components:
           minLength: 10
           maxLength: 15
 
-    requestproduct:
+    requestpost:
       type: object
       properties:
+        "title":
+          type: string
+          minLength: 1
+          maxLength: 250
         "content":
           type: string
           minLength: 1
@@ -1012,12 +1119,8 @@ components:
           type: string
           minLength: 1
           maxLength: 250
-        "user_id":
-          type: number
-          minLength: 1
-          maxLength: 50
 
-    responseAllproductSuccess:
+    responseAllpostSuccess:
       type: object
       properties: {
 
@@ -1029,7 +1132,7 @@ components:
           }
       }
 
-    responseproductSuccess:
+    responsepostSuccess:
       type: object
       properties: {
       
@@ -1040,10 +1143,14 @@ components:
             type: object
             }
       }
-
-    requestUpdateproduct:
+    
+    requestUpdatepost:
       type: object
       properties:
+        "title":
+          type: string
+          minLength: 1
+          maxLength: 250
         "content":
           type: string
           minLength: 1
@@ -1052,7 +1159,59 @@ components:
           type: string
           minLength: 1
           maxLength: 250
-        "user_id":
+          
+    requestpoint:
+      type: object
+      properties:
+        "content_id":
           type: number
           minLength: 1
-          maxLength: 50
+          maxLength: 5
+        "point":
+          type: number
+          minLength: 1
+          maxLength: 5
+        "views_number":
+          type: number
+          minLength: 1
+          maxLength: 5
+          
+    requestUpdatepoint:
+      type: object
+      properties:
+        "content_id":
+          type: number
+          minLength: 1
+          maxLength: 5
+        "point":
+          type: number
+          minLength: 1
+          maxLength: 5
+        "views_number":
+          type: number
+          minLength: 1
+          maxLength: 5
+
+    responseAllpointSuccess:
+      type: object
+      properties: {
+
+        "message": {
+          type: string
+          },
+          "data":{
+            type: object
+          }
+      }
+
+    responsepointSuccess:
+      type: object
+      properties: {
+      
+        "message": {
+          type: string
+          },
+          "data":{
+            type: object
+            }
+      }
