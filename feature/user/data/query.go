@@ -90,7 +90,7 @@ func (ud *userData) Delete(userID int) (row int, err error) {
 func (ud *userData) GetAll() []domain.User {
 	var data []User
 	// err := ud.db.Find(&data)
-	err := ud.db.Where("role != ?", "admin").First(&data)
+	err := ud.db.Where("role != ?", "admin").Find(&data)
 	// err := ud.db.Select("full_name", "email").Find(&data)
 
 	if err.Error != nil {

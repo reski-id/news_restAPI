@@ -148,6 +148,13 @@ func (uh *userHandler) UpdateUser() echo.HandlerFunc {
 
 func (uh *userHandler) GetAllUser() echo.HandlerFunc {
 	return func(c echo.Context) error {
+		_, role := common.ExtractData(c)
+
+		if role != "admin" {
+			return c.JSON(http.StatusCreated, map[string]interface{}{
+				"message": "Only Admin can access",
+			})
+		}
 		data, err := uh.userUsecase.GetAllU()
 		if err != nil {
 			log.Println("Cannot get data", err)
