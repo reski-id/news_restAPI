@@ -55,8 +55,8 @@ func (nd *contentData) Delete(contentID int) bool {
 func (nd *contentData) GetAll() []domain.ContentDetail {
 	var data []ContentDetail
 
-	getdetails := nd.db.Model(&Content{}).Select("contents.id,contents.title, contents.content, contents.images,contents.user_id, details.point, details.views_number").
-		Joins("join details on contents.id=details.content_id").Find(&data)
+	// getdetails := nd.db.Model(&Content{}).Select("contents.id,contents.title, contents.content, contents.images,contents.user_id, details.point, details.views_number").
+	getdetails := nd.db.Model(&Content{}).Select("contents.id,contents.title, contents.content, contents.images,contents.user_id").Find(&data)
 
 	if getdetails.Error != nil {
 		log.Println("problem data", getdetails.Error.Error())
