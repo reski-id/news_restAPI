@@ -165,7 +165,7 @@ paths:
     get:
       tags:
         - Users
-      summary: Registration User
+      summary: All Users Data
       description: get all user data
       responses:
         '200':
@@ -180,10 +180,10 @@ paths:
                     message: "success",
                     data: {
                       "id"     : 1,
-                      "fullname": "The Mad Titan",
-                      "username": "thanos",
-                      "email": "thanos@gmail.com",
-                      "role": "admin",
+                      "fullname": "Ahmad Reski",
+                      "username": "reski",
+                      "email": "myemail@gmail.com",
+                      "role": "creator",
                       "created_at": "2022-06-27T05:56:50.248Z",
                     }
                   }
@@ -218,7 +218,7 @@ paths:
       tags:
         - Users
       summary: for get User By Id
-      description: Bisa diaplikasikan ketika user ingin melihat profilnya
+      description: Melihat Profil user berdasarkan ID
       security:
         - JWTAuth: []
       parameters:
@@ -279,7 +279,7 @@ paths:
       tags:
         - Users
       summary: for put User By Id
-      description: Bisa diaplikasikan ketika user ingin update profilnya & semua field tidak boleh kosong
+      description: Update data user
       security:
         - JWTAuth: []     
       parameters:
@@ -296,16 +296,6 @@ paths:
             schema:
               $ref: '#/components/schemas/requestUpdate'
             examples:
-              userData1:
-                description: "Data  user 1"
-                value: {
-                  "id"     : 1,
-                  "fullname": "The Mad Titan",
-                  "username": "thanos",
-                  "email": "thanos@gmail.com",
-                  "role" : "admin",
-                  "created_at": "2022-06-27T05:56:50.248Z",
-                }
               userData2:
                 description: "Data  user 2"
                 value: {

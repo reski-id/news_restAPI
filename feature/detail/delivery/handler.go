@@ -72,8 +72,10 @@ func (nh *detailHandler) InsertDetail() echo.HandlerFunc {
 
 		data, err := nh.contentUsecase.AddDetail(tmp.ToDomain())
 		if err != nil {
-			log.Println("Cannot proces data", err)
-			c.JSON(http.StatusInternalServerError, err)
+			log.Println("Cannot proces data,ID sudah Ada", err)
+
+			c.JSON(http.StatusInternalServerError, "Cannot proces data,ID sudah Ada")
+			return (err)
 
 		}
 		return c.JSON(http.StatusCreated, map[string]interface{}{

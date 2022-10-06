@@ -8,9 +8,9 @@ import (
 
 type Detail struct {
 	gorm.Model
-	Point       int `json:"point" form:"point"`
-	ViewsNumber int `json:"views_number" form:"views_number"`
-	ContentID   int
+	Point       int     `json:"point" form:"point"`
+	ViewsNumber int     `json:"views_number" form:"views_number"`
+	ContentID   int     `gorm:"unique" json:"ContentID" form:"ContentID" validate:"required"`
 	Content     Content `gorm:"foreignKey:ContentID; references:ID; constraint:OnDelete:CASCADE"`
 }
 
