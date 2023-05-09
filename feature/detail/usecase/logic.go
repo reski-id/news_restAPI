@@ -15,20 +15,6 @@ func New(model domain.ContentDetailData) domain.ContentDetailUseCase {
 	}
 }
 
-// func (nu *contentUseCase) AddDetail(ContentID int, newDetail domain.Detail) (domain.Detail, error) {
-// 	if ContentID == -1 {
-// 		return domain.Detail{}, errors.New("invalid user")
-// 	}
-
-// 	newDetail.ContentID = ContentID
-// 	res := nu.contentData.Insert(newDetail)
-
-// 	if res.ID == 0 {
-// 		return domain.Detail{}, errors.New("error insert data")
-// 	}
-// 	return res, nil
-// }
-
 func (nu *contentUseCase) AddDetail(newData domain.Detail) (domain.Detail, error) {
 
 	res := nu.contentData.Insert(newData)
@@ -53,10 +39,10 @@ func (nu *contentUseCase) UpDetail(IDDetail int, updateData domain.Detail) (doma
 }
 
 func (nu *contentUseCase) DelDetail(IDDetail int) (bool, error) {
-	res := nu.contentData.Delete(IDDetail)
+	err := nu.contentData.Delete(IDDetail)
 
-	if !res {
-		return false, errors.New("failed delete")
+	if err != nil {
+		return false, err
 	}
 
 	return true, nil

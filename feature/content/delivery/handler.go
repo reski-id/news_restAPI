@@ -90,13 +90,12 @@ func (nh *contentHandler) DeleteContent() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, "cannot convert id")
 		}
 
-		data, err := nh.contentUsecase.DelContent(cnv)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, "cannot delete user")
-		}
-
-		if !data {
-			return c.JSON(http.StatusInternalServerError, "cannot delete")
+		_, errResult := nh.contentUsecase.DelContent(cnv)
+		if errResult != nil {
+			return c.JSON(http.StatusBadRequest, map[string]interface{}{
+				"status":  errResult.Error(),
+				"message": "Cannot deleted data",
+			})
 		}
 
 		return c.JSON(http.StatusOK, map[string]interface{}{

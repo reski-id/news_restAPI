@@ -43,10 +43,10 @@ func (nu *contentUseCase) UpContent(IDContent int, updateData domain.Content) (d
 }
 
 func (nu *contentUseCase) DelContent(IDContent int) (bool, error) {
-	res := nu.contentData.Delete(IDContent)
+	err := nu.contentData.Delete(IDContent)
 
-	if !res {
-		return false, errors.New("failed delete")
+	if err != nil {
+		return false, err
 	}
 
 	return true, nil

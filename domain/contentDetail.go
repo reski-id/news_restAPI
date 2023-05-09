@@ -36,7 +36,7 @@ type ContentDetailUseCase interface {
 type ContentDetailData interface {
 	Insert(insertDetail Detail) Detail
 	Update(IDDetail int, updatedDetail Detail) Detail
-	Delete(IDDetail int) bool
+	Delete(IDDetail int) error
 	GetAll() []Detail
 	GetDetailID(DetailID int) []Detail
 }

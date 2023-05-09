@@ -20,39 +20,6 @@ func New(nu domain.ContentDetailUseCase) domain.ContentDetailHandler {
 	}
 }
 
-// func (nh *detailHandler) InsertDetail() echo.HandlerFunc {
-// 	return func(c echo.Context) error {
-// 		var tmp InsertRequest
-// 		err := c.Bind(&tmp)
-
-// 		if err != nil {
-// 			log.Println("Cannot parse data", err)
-// 			c.JSON(http.StatusBadRequest, "error read input")
-// 		}
-
-// 		var userid, role = common.ExtractData(c)
-// 		if role != "admin" {
-// 			return c.JSON(http.StatusCreated, map[string]interface{}{
-// 				"message": "Only Admin can Access",
-// 			})
-// 		}
-// 		data, err := nh.contentUsecase.AddDetail(userid, tmp.ToDomain())
-
-// 		if err != nil {
-// 			log.Println("Cannot proces data", err)
-// 			c.JSON(http.StatusInternalServerError, err)
-// 		}
-
-// 		fmt.Println(userid)
-
-// 		return c.JSON(http.StatusCreated, map[string]interface{}{
-// 			"message": "success create data",
-// 			"data":    FromDomain(data),
-// 		})
-
-// 	}
-// }
-
 func (nh *detailHandler) InsertDetail() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		var tmp InsertRequest
@@ -132,15 +99,13 @@ func (nh *detailHandler) DeleteDetail() echo.HandlerFunc {
 			return c.JSON(http.StatusInternalServerError, "cannot convert id")
 		}
 
-		data, err := nh.contentUsecase.DelDetail(cnv)
-		if err != nil {
-			return c.JSON(http.StatusInternalServerError, "cannot delete data")
+		_, errResult := nh.contentUsecase.DelDetail(cnv)
+		if errResult != nil {
+			return c.JSON(http.StatusBadRequest, map[string]interface{}{
+				"status":  errResult.Error(),
+				"message": "Cannot deleted data",
+			})
 		}
-
-		if !data {
-			return c.JSON(http.StatusInternalServerError, "cannot delete")
-		}
-
 		return c.JSON(http.StatusOK, map[string]interface{}{
 			"message": "success delete data",
 		})

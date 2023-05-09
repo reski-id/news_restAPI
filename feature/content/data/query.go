@@ -39,17 +39,17 @@ func (bd *contentData) Update(contentID int, updatedData domain.Content) domain.
 	return cnv.ToDomain()
 }
 
-func (nd *contentData) Delete(contentID int) bool {
-	err := nd.db.Where("ID = ?", contentID).Delete(&Content{})
-	if err.Error != nil {
-		log.Println("Cannot delete data", err.Error.Error())
-		return false
+func (nd *contentData) Delete(contentID int) error {
+	result := nd.db.Where("ID = ?", contentID).Delete(&Content{})
+	if result.Error != nil {
+		log.Println("Cannot delete data", result.Error.Error())
+		return result.Error
 	}
-	if err.RowsAffected < 1 {
-		log.Println("No data deleted", err.Error.Error())
-		return false
+	if result.RowsAffected == 0 {
+		log.Println("No data deleted")
+		return fmt.Errorf("data with ID %d does not exist", contentID)
 	}
-	return true
+	return nil
 }
 
 func (nd *contentData) GetAll() []domain.ContentDetail {

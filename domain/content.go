@@ -51,7 +51,7 @@ type ContentUseCase interface {
 type ContentData interface {
 	Insert(insertContent Content) Content
 	Update(IDContent int, updatedContent Content) Content
-	Delete(IDContent int) bool
+	Delete(IDContent int) error
 	GetAll() []ContentDetail
 	GetAllMyContent(IDUser int) []ContentDetail
 	GetContentID(ContentID int) []Content
