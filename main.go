@@ -20,6 +20,8 @@ func main() {
 	cfg := config.GetConfig()
 	db := mysql.InitDB(cfg)
 	mysql.MigrateData(db)
+	mysql.SeedUsers(db)
+	mysql.SeedContent(db)
 	e := echo.New()
 
 	factory.Initfactory(e, db)
