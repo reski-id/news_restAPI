@@ -3,34 +3,21 @@ package delivery
 import (
 	"log"
 	"net/http"
-	"portal/config"
 	"portal/domain"
 	"portal/feature/common"
 	"strings"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
 )
 
 type userHandler struct {
 	userUsecase domain.UserUseCase
 }
 
-func New(e *echo.Echo, us domain.UserUseCase) {
-	handler := &userHandler{
-		userUsecase: us,
+func New(nu domain.UserUseCase) domain.UserHandler {
+	return &userHandler{
+		userUsecase: nu,
 	}
-	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"*"},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization},
-		AllowMethods: []string{echo.GET, echo.POST, echo.PUT, echo.DELETE},
-	}))
-	e.POST("/register", handler.InsertUser())
-	e.POST("/login", handler.LogUser())
-	e.GET("/my", handler.GetProfile(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
-	e.GET("/datausers", handler.GetAllUser())
-	e.DELETE("/users", handler.DeleteUser(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
-	e.PUT("/users", handler.UpdateUser(), middleware.JWTWithConfig(common.UseJWT([]byte(config.SECRET))))
 }
 
 func (uh *userHandler) InsertUser() echo.HandlerFunc {
@@ -87,7 +74,7 @@ func (uh *userHandler) LogUser() echo.HandlerFunc {
 
 func (uh *userHandler) GetProfile() echo.HandlerFunc {
 	return func(c echo.Context) error {
-		// id := common.ExtractData(c)
+
 		id, _ := common.ExtractData(c)
 
 		data, err := uh.userUsecase.GetProfile(id)

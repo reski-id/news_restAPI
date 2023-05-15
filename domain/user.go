@@ -1,6 +1,10 @@
 package domain
 
-import "time"
+import (
+	"time"
+
+	"github.com/labstack/echo/v4"
+)
 
 type User struct {
 	ID        int
@@ -11,6 +15,15 @@ type User struct {
 	FullName  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
+}
+
+type UserHandler interface {
+	InsertUser() echo.HandlerFunc
+	LogUser() echo.HandlerFunc
+	GetProfile() echo.HandlerFunc
+	DeleteUser() echo.HandlerFunc
+	UpdateUser() echo.HandlerFunc
+	GetAllUser() echo.HandlerFunc
 }
 
 type UserUseCase interface {

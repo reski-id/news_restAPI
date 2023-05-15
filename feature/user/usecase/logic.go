@@ -24,15 +24,13 @@ func New(ud domain.UserData, v *validator.Validate) domain.UserUseCase {
 }
 
 func (ud *userUseCase) AddUser(newUser domain.User) (domain.User, error) {
-	var cnv = data.FromModel(newUser)
+	var cnv = data.ToLocal(newUser)
 	err := ud.validate.Struct(cnv)
 	if err != nil {
-		log.Println("Validation error : ", err.Error())
 		return domain.User{}, err
 	}
 	hashed, err := bcrypt.GenerateFromPassword([]byte(newUser.Password), bcrypt.DefaultCost)
 	if err != nil {
-		log.Println("error encrypt password", err)
 		return domain.User{}, err
 	}
 	newUser.Password = string(hashed)
@@ -77,7 +75,6 @@ func (ud *userUseCase) GetProfile(id int) (domain.User, error) {
 	data, err := ud.userData.GetSpecific(id)
 
 	if err != nil {
-		log.Println("Use case", err.Error())
 		if err == gorm.ErrRecordNotFound {
 			return domain.User{}, errors.New("data not found")
 		} else {
@@ -91,7 +88,6 @@ func (ud *userUseCase) GetProfile(id int) (domain.User, error) {
 func (ud *userUseCase) DeleteUser(id int) (row int, err error) {
 	row, err = ud.userData.Delete(id)
 	if err != nil {
-		log.Println("delete usecase error", err.Error())
 		if err == gorm.ErrRecordNotFound {
 			return row, errors.New("data not found")
 		} else {

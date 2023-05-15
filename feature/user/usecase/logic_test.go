@@ -68,11 +68,3 @@ func TestAddUser(t *testing.T) {
 	})
 
 }
-
-func TestLoginUser(t *testing.T) {
-
-}
-
-func TestUpdateUser(t *testing.T) {
-
-}

@@ -20,28 +20,28 @@ func New(db *gorm.DB) domain.UserData {
 }
 
 func (ud *userData) Insert(newUser domain.User) (domain.User, error) {
-	var cnv = FromModel(newUser)
+	var cnv = ToLocal(newUser)
 	err := ud.db.Create(&cnv).Error
 	if err != nil {
 		log.Println("Cannot create object", err.Error())
 		return domain.User{}, err
 	}
 
-	return cnv.ToModel(), nil
+	return cnv.ToDomain(), nil
 }
 func (ud *userData) Update(userID int, updatedData domain.User) domain.User {
-	var cnv = FromModel(updatedData)
+	var cnv = ToLocal(updatedData)
 	err := ud.db.Model(&User{}).Where("ID = ?", userID).Updates(cnv).Error
 	if err != nil {
 		log.Println("Cannot update data", err.Error())
 		return domain.User{}
 	}
 	cnv.ID = uint(userID)
-	return cnv.ToModel()
+	return cnv.ToDomain()
 }
 
 func (ud *userData) Login(userLogin domain.User) (row int, data domain.User, err error) {
-	var dataUser = FromModel(userLogin)
+	var dataUser = ToLocal(userLogin)
 	password := dataUser.Password
 
 	result := ud.db.Where("username = ?", dataUser.Username).First(&dataUser)
@@ -60,7 +60,7 @@ func (ud *userData) Login(userLogin domain.User) (row int, data domain.User, err
 		return -2, domain.User{}, fmt.Errorf("failed to login")
 	}
 
-	return int(result.RowsAffected), dataUser.ToModel(), nil
+	return int(result.RowsAffected), dataUser.ToDomain(), nil
 }
 
 func (ud *userData) GetSpecific(userID int) (domain.User, error) {
@@ -71,7 +71,7 @@ func (ud *userData) GetSpecific(userID int) (domain.User, error) {
 		return domain.User{}, err
 	}
 
-	return tmp.ToModel(), nil
+	return tmp.ToDomain(), nil
 }
 
 func (ud *userData) Delete(userID int) (row int, err error) {

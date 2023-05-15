@@ -1,18 +1,20 @@
 package delivery
 
-import "portal/domain"
+import (
+	"portal/domain"
+)
 
 type InsertFormat struct {
-	UserName string `json:"username" form:"username"`
-	Email    string `json:"email" form:"email"`
-	Password string `json:"password" form:"password"`
-	FullName string `json:"fullname" form:"fullname"`
-	Role     string `json:"role" form:"role"`
+	Username string `gorm:"unique" json:"username" form:"username" validate:"required"`
+	Email    string `gorm:"unique" json:"email" form:"email" validate:"required"`
+	Password string `json:"password" form:"password" validate:"required"`
+	FullName string `json:"fullname" form:"fullname" validate:"required"`
+	Role     string `json:"role" form:"role" gorm:"default:user"`
 }
 
 func (i *InsertFormat) ToModel() domain.User {
 	return domain.User{
-		UserName: i.UserName,
+		UserName: i.Username,
 		Email:    i.Email,
 		Password: i.Password,
 		FullName: i.FullName,
